@@ -61,7 +61,7 @@ signalTable = np.append(signalTable, note3)
 formatter = lambda x: "%3d" % x
 
 # send the waveform table to K66F
-serdev = '/dev/ttyACM4'
+serdev = '/dev/ttyACM1'
 s = serial.Serial(serdev)
 print("Sending signal ...")
 print("It may take about %d seconds ..." % (int(signalLength * waitTime)))

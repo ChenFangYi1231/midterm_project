@@ -219,13 +219,8 @@ void playNote(int freq, int len)
         waveform[i] = (int16_t) (sin((double)i * 2. * M_PI/(double) (kAudioSampleFrequency / freq)) * ((1<<16) - 1));
     }
     audio.spk.play(waveform, kAudioTxBufferSize);
-    if(len <= 2){
-        wait(0.25 * len);
-    }
-    else{
-        wait(0.125);
-    }
-    audio.spk.play(0, kAudioTxBufferSize);
+    wait(0.25);
+    //audio.spk.play(0, kAudioTxBufferSize);
 }
 
 
@@ -382,9 +377,11 @@ int main(int argc, char* argv[])
                 }
                 uLCD.locate(0,7);
                 uLCD.printf("score : %d", score);
-                wait(0.125);
+                playNote(0,1);
+                //wait(0.25);
                 if(sw3 == 0){
                     uLCD.cls();
+                    playNote(0,1);
                     state = 1; // mode selection
                     i = song_end;
                 }
